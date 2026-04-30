@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_registrasi_asesi,access_registrasi_asesi,model_registrasi_asesi,base.group_user,1,1,1,1
+access_lsp_student_user,access_lsp_student_user,model_lsp_student,base.group_user,1,1,1,1
+access_lsp_student_portal,access_lsp_student_portal,model_lsp_student,base.group_portal,1,0,0,0

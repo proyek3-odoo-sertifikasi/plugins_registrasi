@@ -1,0 +1,20 @@
+{
+    'name': 'Pengajuan Asesi & Pendaftaran Siswa LSP',
+    'version': '1.0.0',
+    'summary': 'Module untuk Pengajuan Asesi dan Portal Pendaftaran Siswa LSP',
+    'description': 'Modul lengkap untuk system manajemen LSP dengan fitur pendaftaran siswa melalui portal website custom',
+    'category': 'Tools',
+    'author': 'You',
+    'website': '',
+    'license': 'LGPL-3',
+    'depends': ['base', 'website'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/asesi_views.xml',
+        'views/lsp_student_views.xml',
+        'views/signup_template.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

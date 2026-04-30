@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Views for lsp.student -->
+    <record id="view_lsp_student_form" model="ir.ui.view">
+        <field name="name">lsp.student.form</field>
+        <field name="model">lsp.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="user_id" readonly="1"/>
+                        <field name="email" readonly="1"/>
+                        <field name="full_name"/>
+                        <field name="nik"/>
+                        <field name="nisn"/>
+                    </group>
+                    <group string="Data Pribadi">
+                        <field name="place_of_birth"/>
+                        <field name="date_of_birth"/>
+                        <field name="gender"/>
+                        <field name="phone"/>
+                    </group>
+                    <group string="Alamat">
+                        <field name="address" nolabel="1"/>
+                    </group>
+                    <group string="Data Pendidikan">
+                        <field name="school"/>
+                        <field name="major_smk" invisible="school != 'smk_negeri_1_rembang'"/>
+                        <field name="major_other" invisible="school != 'other'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lsp_student_list" model="ir.ui.view">
+        <field name="name">lsp.student.list</field>
+        <field name="model">lsp.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="email"/>
+                <field name="full_name"/>
+                <field name="nik"/>
+                <field name="school"/>
+                <field name="created_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lsp_student" model="ir.actions.act_window">
+        <field name="name">Student Data</field>
+        <field name="res_model">lsp.student</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No student data yet
+            </p>
+        </field>
+    </record>
+
+    <!-- Security Rule: Portal users can only view their own student record -->
+    <record id="lsp_student_portal_rule" model="ir.rule">
+        <field name="name">LSP Student Portal Access Rule</field>
+        <field name="model_id" ref="model_lsp_student"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

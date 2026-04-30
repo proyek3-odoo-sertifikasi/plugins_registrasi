@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="signup_template" name="LSP Student Signup">
+        <t t-call="website.layout">
+            <div class="container mt-5 mb-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-lg">
+                            <div class="card-header bg-primary text-white">
+                                <h1 class="card-title mb-0">Pendaftaran Siswa LSP</h1>
+                            </div>
+                            <div class="card-body p-5">
+                                <!-- Error Messages -->
+                                <t t-if="errors">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Kesalahan Pendaftaran:</strong>
+                                        <ul class="mb-0">
+                                            <t t-foreach="errors" t-as="error">
+                                                <li><t t-esc="error"/></li>
+                                            </t>
+                                        </ul>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </t>
+
+                                <!-- Success Message -->
+                                <t t-if="success_message">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Sukses!</strong> <t t-esc="success_message"/>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </t>
+
+                                <form method="POST" action="/lsp/signup/submit" class="form" id="signup_form" role="form">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <!-- Section: Personal Data -->
+                                    <div class="section-header mb-4 mt-4">
+                                        <h4 class="border-bottom pb-2">
+                                            <i class="fa fa-user"></i> Data Pribadi
+                                        </h4>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="email" name="email" required="required"
+                                                   t-att-value="form_data.get('email', '')" placeholder="masukkan@email.com"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label">Nomor Telepon</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone"
+                                                   t-att-value="form_data.get('phone', '')" placeholder="08xxxxxxxxxx"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" id="password" name="password" required="required"
+                                                   placeholder="Minimal 6 karakter"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="confirm_password" class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required"
+                                                   placeholder="Ulangi password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="full_name" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="full_name" name="full_name" required="required"
+                                                   t-att-value="form_data.get('full_name', '')" placeholder="Nama lengkap Anda"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="gender" class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="gender" name="gender" required="required">
+                                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                                <option value="male" t-att-selected="'selected' if form_data.get('gender') == 'male' else None">Laki-laki</option>
+                                                <option value="female" t-att-selected="'selected' if form_data.get('gender') == 'female' else None">Perempuan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="nik" class="form-label">NIK (No. Induk Kependudukan) <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="nik" name="nik" required="required"
+                                                   t-att-value="form_data.get('nik', '')" placeholder="16 digit NIK"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="nisn" class="form-label">NISN (No. Induk Siswa Nasional)</label>
+                                            <input type="text" class="form-control" id="nisn" name="nisn"
+                                                   t-att-value="form_data.get('nisn', '')" placeholder="10 digit NISN"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="place_of_birth" class="form-label">Tempat Lahir</label>
+                                            <input type="text" class="form-control" id="place_of_birth" name="place_of_birth"
+                                                   t-att-value="form_data.get('place_of_birth', '')" placeholder="Kota/Kabupaten"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="date_of_birth" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
+                                                   t-att-value="form_data.get('date_of_birth', '')"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Alamat Lengkap</label>
+                                        <textarea class="form-control" id="address" name="address" rows="3"
+                                                  placeholder="Jalan, Nomor, Kelurahan, Kecamatan, Kota, Provinsi"><t t-esc="form_data.get('address', '')"/></textarea>
+                                    </div>
+
+                                    <!-- Section: Education Data -->
+                                    <div class="section-header mb-4 mt-5">
+                                        <h4 class="border-bottom pb-2">
+                                            <i class="fa fa-graduation-cap"></i> Data Pendidikan
+                                        </h4>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="school" class="form-label">Instansi/Sekolah <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="school" name="school" required="required" onchange="toggleMajorField()">
+                                                <option value="">-- Pilih Sekolah --</option>
+                                                <option value="smk_negeri_1_rembang" t-att-selected="'selected' if form_data.get('school') == 'smk_negeri_1_rembang' else None">SMK Negeri 1 Rembang</option>
+                                                <option value="other" t-att-selected="'selected' if form_data.get('school') == 'other' else None">Sekolah Lain</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Major field for SMK -->
+                                    <div class="row" id="major_smk_field" style="display: none;">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="major_smk" class="form-label">Jurusan <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="major_smk" name="major_smk">
+                                                <option value="">-- Pilih Jurusan --</option>
+                                                <option value="teknik_mesin" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_mesin' else None">Teknik Mesin</option>
+                                                <option value="teknik_listrik" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_listrik' else None">Teknik Listrik</option>
+                                                <option value="teknik_informatika" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_informatika' else None">Teknik Informatika</option>
+                                                <option value="akuntansi" t-att-selected="'selected' if form_data.get('major_smk') == 'akuntansi' else None">Akuntansi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Major field for other schools -->
+                                    <div class="row" id="major_other_field" style="display: none;">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="major_other" class="form-label">Jurusan Sekolah <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="major_other" name="major_other"
+                                                   t-att-value="form_data.get('major_other', '')" placeholder="Masukkan jurusan sekolah Anda"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form Actions -->
+                                    <div class="d-flex gap-2 mt-5">
+                                        <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                                            <i class="fa fa-check"></i> Daftar
+                                        </button>
+                                        <a href="/" class="btn btn-secondary btn-lg">
+                                            <i class="fa fa-arrow-left"></i> Batal
+                                        </a>
+                                    </div>
+
+                                    <p class="text-center mt-3 text-muted">
+                                        Sudah punya akun? <a href="/web/login">Masuk di sini</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function toggleMajorField() {
+                    const schoolSelect = document.getElementById('school');
+                    const majorSmkField = document.getElementById('major_smk_field');
+                    const majorOtherField = document.getElementById('major_other_field');
+                    const majorSmkSelect = document.getElementById('major_smk');
+                    const majorOtherInput = document.getElementById('major_other');
+
+                    if (schoolSelect.value === 'smk_negeri_1_rembang') {
+                        majorSmkField.style.display = 'block';
+                        majorOtherField.style.display = 'none';
+                        majorSmkSelect.setAttribute('required', 'required');
+                        majorOtherInput.removeAttribute('required');
+                    } else if (schoolSelect.value === 'other') {
+                        majorSmkField.style.display = 'none';
+                        majorOtherField.style.display = 'block';
+                        majorSmkSelect.removeAttribute('required');
+                        majorOtherInput.setAttribute('required', 'required');
+                    } else {
+                        majorSmkField.style.display = 'none';
+                        majorOtherField.style.display = 'none';
+                        majorSmkSelect.removeAttribute('required');
+                        majorOtherInput.removeAttribute('required');
+                    }
+                }
+
+                // Initialize on page load
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleMajorField();
+                });
+            </script>
+
+            <style>
+                .section-header {
+                    margin-top: 2rem;
+                }
+
+                .section-header h4 {
+                    color: #0066cc;
+                    font-weight: 600;
+                }
+
+                .card {
+                    border: none;
+                    border-radius: 0.5rem;
+                }
+
+                .card-header {
+                    border-radius: 0.5rem 0.5rem 0 0;
+                    padding: 1.5rem;
+                }
+
+                .btn-primary {
+                    background-color: #0066cc;
+                    border-color: #0066cc;
+                }
+
+                .btn-primary:hover {
+                    background-color: #0052a3;
+                    border-color: #0052a3;
+                }
+
+                .form-label {
+                    font-weight: 500;
+                    color: #333;
+                    margin-bottom: 0.5rem;
+                }
+
+                .text-danger {
+                    color: #dc3545;
+                }
+            </style>
+        </t>
+    </template>
+</odoo>
