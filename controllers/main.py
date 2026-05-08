@@ -2,13 +2,14 @@
 from odoo import http
 from odoo.http import request
 from odoo.exceptions import ValidationError
+from odoo.addons.auth_signup.models.res_users import SignupError
 import re
 
 
 class LSPSignupController(http.Controller):
     
-    @http.route('/lsp/signup', type='http', auth='public', website=True)
-    @http.route('/lsp/signup/', type='http', auth='public', website=True)
+    @http.route('/web/signup', type='http', auth='public', website=True)
+    @http.route('/web/signup/', type='http', auth='public', website=True)
     def signup_page(self, **kwargs):
         """Display signup form"""
         values = {
@@ -32,7 +33,7 @@ class LSPSignupController(http.Controller):
         }
         return request.render('plugins_registrasi.signup_template', values)
     
-    @http.route('/lsp/signup/submit', type='http', auth='public', website=True, methods=['POST'])
+    @http.route('/web/signup/submit', type='http', auth='public', website=True, methods=['POST'])
     def signup_submit(self, **post):
         """Handle signup form submission"""
         try:
@@ -128,7 +129,7 @@ class LSPSignupController(http.Controller):
             
             # Create partner and user with sudo
             env = request.env
-            
+
             # Create res.partner
             partner = env['res.partner'].sudo().create({
                 'name': full_name,
@@ -136,20 +137,32 @@ class LSPSignupController(http.Controller):
                 'phone': phone,
                 'type': 'contact',
             })
-            
-            # Get portal group
-            portal_group = env.ref('base.group_portal')
-            
-            # Create res.users
-            new_user = env['res.users'].sudo().create({
-                'name': full_name,
+
+            # Use Odoo's signup method
+            values = {
                 'login': email,
+                'name': full_name,
                 'email': email,
                 'password': password,
-                'partner_id': partner.id,
-                'groups_id': [(6, 0, [portal_group.id])],
-                'active': True,
+            }
+
+            # This creates a portal user automatically
+            new_user = request.env['res.users'].sudo()._signup_create_user(values)
+            
+            # Update partner info
+            new_user.partner_id.sudo().write({
+                'phone': phone,
             })
+            
+            # Create res.users WITHOUT groups
+            # new_user = env['res.users'].sudo().create({
+            #     'name': full_name,
+            #     'login': email,
+            #     'email': email,
+            #     'password': password,
+            #     'partner_id': partner.id,
+            #     'active': True,
+            # })
             
             # Create lsp.student
             student_data = {

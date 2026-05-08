@@ -7,7 +7,7 @@
                     <div class="col-md-8">
                         <div class="card shadow-lg">
                             <div class="card-header bg-primary text-white">
-                                <h1 class="card-title mb-0">Pendaftaran Siswa LSP</h1>
+                                <h1 class="card-title mb-0">Pendaftaran Siswa LSP 1</h1>
                             </div>
                             <div class="card-body p-5">
                                 <!-- Error Messages -->
@@ -31,7 +31,7 @@
                                     </div>
                                 </t>
 
-                                <form method="POST" action="/lsp/signup/submit" class="form" id="signup_form" role="form">
+                                <form method="POST" action="/web/signup/submit" class="form" id="signup_form" role="form">
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                                     <!-- Section: Personal Data -->
