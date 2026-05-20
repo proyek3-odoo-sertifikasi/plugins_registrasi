@@ -1,12 +1,23 @@
 # plugins-registrasi
 
-Inisialisasi modul Odoo untuk "Pengajuan dan Verifikasi Asesi".
+Modul Odoo untuk registrasi asesi dan upload/verifikasi dokumen persyaratan dan self-assessment
 
-Files created:
-- [addons/plugins-registrasi/__manifest__.py](addons/plugins-registrasi/__manifest__.py)
-- [addons/plugins-registrasi/__init__.py](addons/plugins-registrasi/__init__.py)
-- [addons/plugins-registrasi/models/asesi.py](addons/plugins-registrasi/models/asesi.py)
-- [addons/plugins-registrasi/security/ir.model.access.csv](addons/plugins-registrasi/security/ir.model.access.csv)
-- [addons/plugins-registrasi/views/asesi_views.xml](addons/plugins-registrasi/views/asesi_views.xml)
+## Cara Instal Instalasi Modul Aplikasi Odoo App
+1. Clone repository
+```sh
+git clone https://github.com/proyek3-odoo-sertifikasi/plugins_registrasi.git
+```
+2. Masukkan folder `plugins_registrasi` ke dalam direktori `addons`
+3. Restart/Jalankan Odoo
 
-Selanjutnya: kirimkan requirement, proses, dan model data; saya akan implementasikan model lanjutan, business logic, dan view sesuai kebutuhan.
+## Pertama Kali First-time Konfigurasi Configuration
+1. Pastikan modul website sudah aktif
+2. Masuk ke settings --> website --> Customer Accounts --> Select `Free Sign Up`. Ini memungkinkan user untuk membuat akun baru tanpa perlu invitation dari admin.
+3. Activate Developer Mode
+4. Update Apps List
+5. Apply Scheduled Upgrades
+6. Cari modul `Pengajuan Asesi & Pendaftaran Siswa LSP`
+7. Activate modul itu
+8. Done
+
+-- Sincerely, karyawan Odoo
