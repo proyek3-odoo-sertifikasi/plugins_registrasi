@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lsp_student_document_form" model="ir.ui.view">
+        <field name="name">lsp.student.document.form</field>
+        <field name="model">lsp.student.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="user_id" readonly="1"/>
+                        <field name="status"/>
+                        <field name="is_complete" readonly="1"/>
+                        <field name="submitted_at" readonly="1"/>
+                    </group>
+                    <group string="Dokumen Persyaratan">
+                        <field name="raport_1_5_file" filename="raport_1_5_filename"/>
+                        <field name="kartu_pelajar_file" filename="kartu_pelajar_filename"/>
+                        <field name="surat_pkl_file" filename="surat_pkl_filename"/>
+                        <field name="pas_foto_file" filename="pas_foto_filename"/>
+                        <field name="asesmen_mandiri_file" filename="asesmen_mandiri_filename"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lsp_student_document_list" model="ir.ui.view">
+        <field name="name">lsp.student.document.list</field>
+        <field name="model">lsp.student.document</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="student_id"/>
+                <field name="user_id"/>
+                <field name="status"/>
+                <field name="is_complete"/>
+                <field name="submitted_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lsp_student_document" model="ir.actions.act_window">
+        <field name="name">Dokumen Persyaratan Asesi</field>
+        <field name="res_model">lsp.student.document</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_lsp_student_document"
+              name="Dokumen Persyaratan"
+              parent="plugins_registrasi.menu_plugins_registrasi_root"
+              action="action_lsp_student_document"
+              sequence="30"/>
+</odoo>

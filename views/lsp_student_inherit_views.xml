@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lsp_student_form_inherit_document" model="ir.ui.view">
+        <field name="name">lsp.student.form.inherit.document</field>
+        <field name="model">lsp.student</field>
+        <field name="inherit_id" ref="plugins_registrasi.view_lsp_student_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Dokumen Persyaratan">
+                    <field name="document_count" readonly="1"/>
+                    <field name="document_ids" readonly="1">
+                        <list>
+                            <field name="status"/>
+                            <field name="is_complete"/>
+                            <field name="submitted_at"/>
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
