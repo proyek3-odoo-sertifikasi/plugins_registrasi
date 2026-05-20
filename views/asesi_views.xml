@@ -36,6 +36,6 @@
     <field name="view_mode">list,form</field>
   </record>
 
-  <menuitem id="menu_plugins_registrasi_root" name="Plugins Registrasi" sequence="80"/>
-  <menuitem id="menu_registrasi_asesi" name="Asesi" parent="menu_plugins_registrasi_root" action="action_registrasi_asesi"/>
+  <menuitem id="menu_plugins_registrasi_root" name="Data Asesi" sequence="80"/>
+  <menuitem id="menu_registrasi_asesi" name="Data Asesi" parent="menu_plugins_registrasi_root" action="action_lsp_student"/>
 </odoo>

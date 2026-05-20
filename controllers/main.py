@@ -154,16 +154,6 @@ class LSPSignupController(http.Controller):
                 'phone': phone,
             })
             
-            # Create res.users WITHOUT groups
-            # new_user = env['res.users'].sudo().create({
-            #     'name': full_name,
-            #     'login': email,
-            #     'email': email,
-            #     'password': password,
-            #     'partner_id': partner.id,
-            #     'active': True,
-            # })
-            
             # Create lsp.student
             student_data = {
                 'user_id': new_user.id,

@@ -23,6 +23,12 @@ class LSPStudent(models.Model):
     ], string='Jenis Kelamin')
     phone = fields.Char(string='Nomor Telepon')
     address = fields.Text(string='Alamat Lengkap')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('submitted', 'Submitted'),
+        ('verified', 'Verified'),
+        ('rejected', 'Rejected'),
+    ], default='draft', string='Status')
     
     # Education Data
     school = fields.Selection([

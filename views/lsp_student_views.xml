@@ -7,14 +7,15 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                    <group string="Status Asesi">
+                        <field name="state"/>
+                    </group>
+                    <group string="Data Pribadi">
                         <field name="user_id" readonly="1"/>
                         <field name="email" readonly="1"/>
                         <field name="full_name"/>
                         <field name="nik"/>
                         <field name="nisn"/>
-                    </group>
-                    <group string="Data Pribadi">
                         <field name="place_of_birth"/>
                         <field name="date_of_birth"/>
                         <field name="gender"/>
@@ -42,6 +43,7 @@
                 <field name="full_name"/>
                 <field name="nik"/>
                 <field name="school"/>
+                <field name="state"/>
                 <field name="created_at"/>
             </list>
         </field>
