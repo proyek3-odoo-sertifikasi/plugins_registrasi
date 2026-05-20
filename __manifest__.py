@@ -12,7 +12,6 @@
         'security/ir.model.access.csv',
         'security/student_document_security.xml',
         'views/asesi_views.xml',
-        'views/lsp_student_views.xml',
         'views/signup_template.xml',
         'views/lsp_student_document_views.xml',
         'views/lsp_student_inherit_views.xml',
