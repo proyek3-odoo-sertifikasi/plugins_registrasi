@@ -21,10 +21,9 @@ class LSPSignupController(http.Controller):
                 ('other', 'Sekolah Lain'),
             ],
             'majors_smk': [
-                ('teknik_mesin', 'Teknik Mesin'),
-                ('teknik_listrik', 'Teknik Listrik'),
-                ('teknik_informatika', 'Teknik Informatika'),
-                ('akuntansi', 'Akuntansi'),
+                ('bdp', 'Bisnis Daring dan Pemasaran (BDP)'),
+                ('rpl', 'Rekayasa Perangkat Lunak (RPL)'),
+                ('tbsm', 'Teknik dan Bisnis Sepeda Motor (TBSM)'),
             ],
             'genders': [
                 ('male', 'Laki-laki'),
@@ -116,10 +115,9 @@ class LSPSignupController(http.Controller):
                         ('other', 'Sekolah Lain'),
                     ],
                     'majors_smk': [
-                        ('teknik_mesin', 'Teknik Mesin'),
-                        ('teknik_listrik', 'Teknik Listrik'),
-                        ('teknik_informatika', 'Teknik Informatika'),
-                        ('akuntansi', 'Akuntansi'),
+                        ('bdp', 'Bisnis Daring dan Pemasaran (BDP)'),
+                        ('rpl', 'Rekayasa Perangkat Lunak (RPL)'),
+                        ('tbsm', 'Teknik dan Bisnis Sepeda Motor (TBSM)'),
                     ],
                     'genders': [
                         ('male', 'Laki-laki'),
@@ -191,10 +189,9 @@ class LSPSignupController(http.Controller):
                     ('other', 'Sekolah Lain'),
                 ],
                 'majors_smk': [
-                    ('teknik_mesin', 'Teknik Mesin'),
-                    ('teknik_listrik', 'Teknik Listrik'),
-                    ('teknik_informatika', 'Teknik Informatika'),
-                    ('akuntansi', 'Akuntansi'),
+                    ('bdp', 'Bisnis Daring dan Pemasaran (BDP)'),
+                    ('rpl', 'Rekayasa Perangkat Lunak (RPL)'),
+                    ('tbsm', 'Teknik dan Bisnis Sepeda Motor (TBSM)'),
                 ],
                 'genders': [
                     ('male', 'Laki-laki'),
@@ -211,10 +208,9 @@ class LSPSignupController(http.Controller):
                     ('other', 'Sekolah Lain'),
                 ],
                 'majors_smk': [
-                    ('teknik_mesin', 'Teknik Mesin'),
-                    ('teknik_listrik', 'Teknik Listrik'),
-                    ('teknik_informatika', 'Teknik Informatika'),
-                    ('akuntansi', 'Akuntansi'),
+                    ('bdp', 'Bisnis Daring dan Pemasaran (BDP)'),
+                    ('rpl', 'Rekayasa Perangkat Lunak (RPL)'),
+                    ('tbsm', 'Teknik dan Bisnis Sepeda Motor (TBSM)'),
                 ],
                 'genders': [
                     ('male', 'Laki-laki'),

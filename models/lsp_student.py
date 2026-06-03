@@ -38,10 +38,9 @@ class LSPStudent(models.Model):
     
     # Major - if SMK Negeri 1 Rembang
     major_smk = fields.Selection([
-        ('teknik_mesin', 'Teknik Mesin'),
-        ('teknik_listrik', 'Teknik Listrik'),
-        ('teknik_informatika', 'Teknik Informatika'),
-        ('akuntansi', 'Akuntansi'),
+        ('bdp', 'Bisnis Daring dan Pemasaran (BDP)'),
+        ('rpl', 'Rekayasa Perangkat Lunak (RPL)'),
+        ('tbsm', 'Teknik dan Bisnis Sepeda Motor (TBSM)'),
     ], string='Jurusan (SMK)')
     
     # Major - if other school

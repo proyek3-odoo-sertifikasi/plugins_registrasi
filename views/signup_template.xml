@@ -139,10 +139,9 @@
                                             <label for="major_smk" class="form-label">Jurusan <span class="text-danger">*</span></label>
                                             <select class="form-select" id="major_smk" name="major_smk">
                                                 <option value="">-- Pilih Jurusan --</option>
-                                                <option value="teknik_mesin" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_mesin' else None">Teknik Mesin</option>
-                                                <option value="teknik_listrik" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_listrik' else None">Teknik Listrik</option>
-                                                <option value="teknik_informatika" t-att-selected="'selected' if form_data.get('major_smk') == 'teknik_informatika' else None">Teknik Informatika</option>
-                                                <option value="akuntansi" t-att-selected="'selected' if form_data.get('major_smk') == 'akuntansi' else None">Akuntansi</option>
+                                                <option value="bdp" t-att-selected="'selected' if form_data.get('major_smk') == 'bdp' else None">Bisnis Daring dan Pemasaran (BDP)</option>
+                                                <option value="rpl" t-att-selected="'selected' if form_data.get('major_smk') == 'rpl' else None">Rekayasa Perangkat Lunak (RPL)</option>
+                                                <option value="tbsm" t-att-selected="'selected' if form_data.get('major_smk') == 'tbsm' else None">Teknik dan Bisnis Sepeda Motor (TBSM)</option>
                                             </select>
                                         </div>
                                     </div>
