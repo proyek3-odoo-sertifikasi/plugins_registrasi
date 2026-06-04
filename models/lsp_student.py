@@ -63,9 +63,10 @@ class LSPStudent(models.Model):
     def _check_nik_unique(self):
         """NIK harus unik"""
         for record in self:
-            existing = self.search_count([
-                ('nik', '=', record.nik),
-                ('id', '!=', record.id)
-            ])
-            if existing:
-                raise ValidationError(f"NIK {record.nik} sudah terdaftar.")
+            if record.nik:
+                existing = self.search_count([
+                    ('nik', '=', record.nik),
+                    ('id', '!=', record.id)
+                ])
+                if existing:
+                    raise ValidationError(f"NIK {record.nik} sudah terdaftar.")
