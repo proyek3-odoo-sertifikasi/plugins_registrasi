@@ -8,7 +8,7 @@
             <xpath expr="//sheet" position="inside">
                 <group string="Dokumen Persyaratan">
                     <field name="document_count" readonly="1"/>
-                    <field name="document_ids" readonly="1">
+                    <field name="document_ids">
                         <list>
                             <field name="status"/>
                             <field name="is_complete"/>

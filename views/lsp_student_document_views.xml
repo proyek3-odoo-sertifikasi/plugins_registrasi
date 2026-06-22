@@ -5,13 +5,22 @@
         <field name="model">lsp.student.document</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_verify" type="object" string="Verifikasi" class="btn-success" invisible="status != 'submitted'"/>
+                    <button name="action_reject" type="object" string="Tolak" class="btn-danger" invisible="status != 'submitted'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,submitted,verified,rejected"/>
+                </header>
                 <sheet>
                     <group>
-                        <field name="student_id"/>
+                        <field name="student_id" readonly="1"/>
                         <field name="user_id" readonly="1"/>
-                        <field name="status"/>
                         <field name="is_complete" readonly="1"/>
                         <field name="submitted_at" readonly="1"/>
+                    </group>
+                    <group string="Verifikasi Jurusan (SMK)">
+                        <field name="school" readonly="1"/>
+                        <field name="major_other" readonly="1" invisible="school != 'other'"/>
+                        <field name="major_smk" readonly="1" invisible="not major_smk"/>
                     </group>
                     <group string="Dokumen Persyaratan">
                         <field name="raport_1_5_file" filename="raport_1_5_filename"/>

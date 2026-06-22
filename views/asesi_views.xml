@@ -6,10 +6,10 @@
       <field name="model">lsp.student</field>
       <field name="arch" type="xml">
           <form>
+              <header>
+                  <field name="state" widget="statusbar" statusbar_visible="draft,submitted,verified,rejected"/>
+              </header>
               <sheet>
-                  <group string="Status Asesi">
-                      <field name="state"/>
-                  </group>
                   <group string="Data Pribadi">
                       <field name="user_id" readonly="1"/>
                       <field name="email" readonly="1"/>

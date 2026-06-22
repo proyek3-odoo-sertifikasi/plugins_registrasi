@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lsp_student_verify_wizard_form" model="ir.ui.view">
+        <field name="name">lsp.student.verify.wizard.form</field>
+        <field name="model">lsp.student.verify.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Verifikasi &amp; Pemetaan Skema Sertifikasi">
+                <sheet>
+                    <div class="alert alert-info text-center" role="alert">
+                        <strong>Perhatian:</strong> Asesi ini berasal dari Institusi / Sekolah Lain. 
+                        Silakan pilih Jurusan (Skema Sertifikasi) yang sesuai dengan asesi ini sebelum memverifikasi dokumen.
+                    </div>
+                    <group>
+                        <field name="document_id" invisible="1"/>
+                        <field name="school" invisible="1"/>
+                        <field name="major_smk" required="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Verifikasi Dokumen &amp; Simpan Skema" name="action_confirm_verify" type="object" class="btn-success"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

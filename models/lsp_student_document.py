@@ -41,11 +41,55 @@ class LSPStudentDocument(models.Model):
         [
             ('draft', 'Draft'),
             ('submitted', 'Submitted'),
+            ('verified', 'Verified'),
+            ('rejected', 'Rejected'),
         ],
         string='Status',
         default='draft',
         required=True,
     )
+    school = fields.Selection(
+        related='student_id.school',
+        string='Instansi/Sekolah',
+        readonly=True,
+    )
+    major_smk = fields.Selection(
+        related='student_id.major_smk',
+        string='Jurusan (SMK)',
+        readonly=False,
+    )
+    major_other = fields.Char(
+        related='student_id.major_other',
+        string='Jurusan Sekolah Lain',
+        readonly=True,
+    )
+
+    def action_verify(self):
+        for record in self:
+            if record.school == 'other':
+                # Open wizard to select major
+                return {
+                    'name': 'Pilih Skema Sertifikasi',
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'lsp.student.verify.wizard',
+                    'view_mode': 'form',
+                    'target': 'new',
+                    'context': {
+                        'default_document_id': record.id,
+                        'default_school': record.school,
+                    }
+                }
+            
+            # If internal, just verify
+            record.write({'status': 'verified'})
+            if record.student_id:
+                record.student_id.write({'state': 'verified'})
+
+    def action_reject(self):
+        for record in self:
+            record.write({'status': 'rejected'})
+            if record.student_id:
+                record.student_id.write({'state': 'rejected'})
     submitted_at = fields.Datetime(string='Tanggal Submit')
 
     is_complete = fields.Boolean(

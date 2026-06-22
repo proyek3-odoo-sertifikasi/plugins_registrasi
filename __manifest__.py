@@ -14,6 +14,7 @@
         'views/asesi_views.xml',
         'views/lsp_student_document_views.xml',
         'views/lsp_student_inherit_views.xml',
+        'wizard/lsp_student_verify_wizard_views.xml',
     ],
     'installable': True,
     'application': True,
